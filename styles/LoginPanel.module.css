@@ -14,12 +14,35 @@
   font-weight: bold;
 }
 
+/* Agregar espacio entre los inputs y los botones */
 .form {
   width: 100%;
-  max-width: 20rem; /* max-width para el formulario */
+  max-width: 20rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem; /* Aumentar el gap entre elementos */
+}
+
+.radioGroup {
+  display: flex;
+  justify-content: flex-start; /* Alinear elementos a la izquierda */
+  align-items: center; /* Alinear verticalmente */
+  gap: 2rem; /* Separación horizontal entre las opciones */
+  margin-top: 0.5rem; /* Separación del texto anterior */
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre el radio y el texto */
+  font-size: 1rem; /* Tamaño de texto consistente */
+  font-weight: 500;
+}
+
+
+/* Botones en una línea */
+.radioButton {
+  margin-right: 0.15rem;
 }
 
 .label {

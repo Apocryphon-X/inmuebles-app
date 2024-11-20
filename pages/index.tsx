@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PropertyCard from '../components/PropertyCard';
 import LoginPanel from '../components/LoginPanel';
+import RegisterPanel from '../components/RegisterPanel';
 import styles from '../styles/PaginaPrincipal.module.css';
 import jwt from 'jsonwebtoken';
 
@@ -32,6 +33,7 @@ const PaginaPrincipal: React.FC<PaginaPrincipalProps> = ({ userData }) => {
   const [filtros, setFiltros] = useState<string[]>(['Precio', 'Tamaño', 'Ubicación']);
   const [mostrarFiltros, setMostrarFiltros] = useState(false);
   const [mostrarLogin, setMostrarLogin] = useState(false);
+  const [mostrarRegistro, setMostrarRegistro] = useState(false);
   const [usuarioNombre, setUsuarioNombre] = useState<string | null>(userData?.nombre || null);
 
   useEffect(() => {
@@ -50,19 +52,29 @@ const PaginaPrincipal: React.FC<PaginaPrincipalProps> = ({ userData }) => {
 
   const handleLogoClick = () => {
     setMostrarLogin(false);
+    setMostrarRegistro(false);
     setMostrarFiltros(false);
   };
 
   return (
     <div className={styles.mainContainer}>
       <Header
-        onLoginClick={() => setMostrarLogin(true)}
+        onLoginClick={() => {
+          setMostrarLogin(true);
+          setMostrarRegistro(false);
+        }}
+        onRegisterClick={() => {
+          setMostrarRegistro(true);
+          setMostrarLogin(false);
+        }}
         onLogoClick={handleLogoClick}
         usuarioNombre={usuarioNombre}
       />
       <main className={styles.mainContent}>
         {mostrarLogin ? (
           <LoginPanel onClose={() => setMostrarLogin(false)} />
+        ) : mostrarRegistro ? (
+          <RegisterPanel onClose={() => setMostrarRegistro(false)} />
         ) : (
           <>
             <div className={styles.flexCenter}>

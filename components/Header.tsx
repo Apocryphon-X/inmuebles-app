@@ -3,11 +3,12 @@ import styles from '../styles/Header.module.css';
 
 interface HeaderProps {
   onLoginClick: () => void;
+  onRegisterClick: () => void; // Nuevo callback para registro
   onLogoClick: () => void;
-  usuarioNombre: string | null; // Nuevo prop
+  usuarioNombre: string | null; // Prop para mostrar el nombre del usuario
 }
 
-const Header: React.FC<HeaderProps> = ({ onLoginClick, onLogoClick, usuarioNombre }) => {
+const Header: React.FC<HeaderProps> = ({ onLoginClick, onRegisterClick, onLogoClick, usuarioNombre }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo} onClick={onLogoClick}>
@@ -18,8 +19,12 @@ const Header: React.FC<HeaderProps> = ({ onLoginClick, onLogoClick, usuarioNombr
           <span className={styles.welcomeMessage}>Bienvenid@, {usuarioNombre}</span>
         ) : (
           <>
-            <button onClick={onLoginClick}>Iniciar sesión</button>
-            <button>Registrarse</button>
+            <button className={styles.headerButton} onClick={onLoginClick}>
+              Iniciar sesión
+            </button>
+            <button className={styles.headerButton} onClick={onRegisterClick}>
+              Registrarse
+            </button>
           </>
         )}
       </div>
