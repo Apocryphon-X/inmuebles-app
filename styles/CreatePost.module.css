@@ -1,0 +1,176 @@
+/* Contenedor principal */
+.mainContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+}
+
+/* Contenido principal */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Título principal */
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Formulario */
+.form {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Grupo de formulario */
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+/* Etiquetas */
+.label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.subLabel {
+  display: block;
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+/* Campos de entrada */
+.inputField {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Dropdowns */
+.inputField select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: white;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Área de texto */
+.textArea {
+  width: 100%;
+  height: 100px;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: none;
+}
+
+/* Cuadrícula para fotos */
+.photoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.photoBox {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  position: relative;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none; /* Oculta el input real */
+}
+
+.fileLabel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #aaa;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Botón de enviar */
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+/* Campo de moneda */
+.currencyField {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.currencySymbol {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  color: #333;
+}
+
+.currencySuffix {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  position: absolute;
+  right: 1rem; /* Separación del borde */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* No interactuable */
+}
+

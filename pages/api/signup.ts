@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   // Concatenar apellidos y nombre para crear el campo "Nombre"
-  const nombreCompleto = `${apellidoPaterno} ${apellidoMaterno} ${nombre}`;
+  const nombreCompleto = `${nombre} ${apellidoPaterno} ${apellidoMaterno}`;
 
   try {
     const userExists = await new Promise<boolean>((resolve, reject) => {

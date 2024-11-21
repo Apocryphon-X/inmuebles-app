@@ -21,6 +21,8 @@ CREATE TABLE Publicaciones (
     id_arrendatario INTEGER,
     nombre_inmueble TEXT NOT NULL,
     renta_mensual INTEGER NOT NULL,
+    tipo_inmueble TEXT NOT NULL CHECK(tipo_inmueble IN ('Casa', 'Recamara', 'Departamento')),
+    ubicacion TEXT NOT NULL,
     informacion_inmueble TEXT NOT NULL,
     fecha_publicacion TEXT NOT NULL,
     FOREIGN KEY (id_arrendatario) REFERENCES Usuarios(id_usuario) ON DELETE SET NULL
@@ -40,6 +42,7 @@ CREATE TABLE Comentarios (
     id_publicacion INTEGER,
     id_usuario INTEGER,
     contenido_comentario TEXT NOT NULL,
+    valoracion INTEGER NOT NULL CHECK(valoracion BETWEEN 1 AND 5),
     fecha_hora TEXT NOT NULL,
     FOREIGN KEY (id_publicacion) REFERENCES Publicaciones(id_publicacion) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE

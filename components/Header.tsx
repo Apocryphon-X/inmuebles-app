@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/Header.module.css';
 
 interface HeaderProps {
@@ -9,6 +10,14 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onLoginClick, onRegisterClick, onLogoClick, usuarioNombre }) => {
+  const router = useRouter();
+
+  const handleUserClick = () => {
+    if (usuarioNombre) {
+      router.push('/profile'); // Redirige a /profile si hay usuario
+    }
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo} onClick={onLogoClick}>
@@ -16,7 +25,15 @@ const Header: React.FC<HeaderProps> = ({ onLoginClick, onRegisterClick, onLogoCl
       </div>
       <div className={styles.buttonContainer}>
         {usuarioNombre ? (
-          <span className={styles.welcomeMessage}>Bienvenid@, {usuarioNombre}</span>
+          <span className={styles.welcomeMessage}>
+            Bienvenid@,{' '}
+            <span
+              className={`${styles.userName} ${styles.clickable}`}
+              onClick={handleUserClick}
+            >
+              {usuarioNombre}
+            </span>
+          </span>
         ) : (
           <>
             <button className={styles.headerButton} onClick={onLoginClick}>

@@ -12,7 +12,7 @@ import jwt from 'jsonwebtoken';
 interface Property {
   id: number;
   title: string;
-  image: string;
+  images: string[]; // Ahora es un arreglo de imágenes
 }
 
 interface UserPayload {
@@ -40,13 +40,25 @@ const PaginaPrincipal: React.FC<PaginaPrincipalProps> = ({ userData }) => {
     const fetchProperties = async () => {
       try {
         const response = await axios.get('/api/properties');
-        setDepartamentosRecientes(response.data);
+        const propertiesWithRandomImages = response.data.map((property: Property) => ({
+          ...property,
+          image: getRandomImage(property.images), // Selecciona una imagen aleatoria
+        }));
+        setDepartamentosRecientes(propertiesWithRandomImages);
       } catch (error) {
         console.error('Error fetching properties:', error);
       }
     };
+
     fetchProperties();
   }, []);
+
+  // Función para seleccionar una imagen aleatoria
+  const getRandomImage = (images: string[]): string => {
+    if (images.length === 0) return '/images/default.jpg'; // Imagen por defecto si no hay imágenes
+    const randomIndex = Math.floor(Math.random() * images.length);
+    return images[randomIndex];
+  };
 
   const filtrarInmuebles = (filtro: string) => console.log(`Aplicando filtro: ${filtro}`);
 
