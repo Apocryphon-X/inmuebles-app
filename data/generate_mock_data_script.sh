@@ -7,7 +7,7 @@ output_file="insert_hashed_mock_data.sql"
 declare -A usuarios
 usuarios["Juan Pérez"]="juan.perez@example.com,5551234567,contrasenia123,ARRENDATARIO"
 usuarios["María López"]="maria.lopez@example.com,5551234568,contrasenia456,ARRENDATARIO"
-usuarios["Carlos García"]="carlos.garcia@example.com,555123456789,contrasenia789,ALUMNO"
+usuarios["Carlos García"]="carlos.garcia@example.com,5551234567,contrasenia789,ALUMNO"
 usuarios["Ana Sánchez"]="ana.sanchez@example.com,5554567890,contrasenia101,ALUMNO"
 usuarios["Pedro Martínez"]="pedro.martinez@example.com,5555678901,contrasenia202,ARRENDATARIO"
 
@@ -48,10 +48,10 @@ echo "(1), (2), (3), (4), (5);" >> $output_file
 echo -e "\n-- Insertar datos en la tabla Publicaciones" >> $output_file
 echo "INSERT INTO Publicaciones (id_arrendatario, nombre_inmueble, renta_mensual, tipo_inmueble, ubicacion, informacion_inmueble, fecha_publicacion) VALUES" >> $output_file
 echo "(1, 'Recamara en Coyoacan', 3000, 'Recamara', 'Coyoacan', 'Recamara amplia y bien iluminada, ideal para estudiantes. Incluye cama y armario.', '2024-11-17')," >> $output_file
-echo "(2, 'Casa en Iztapalapa', 9000, 'Casa', 'Iztapalapa', 'Casa de 3 recamaras, 2 baños, con patio trasero y estacionamiento.', '2024-11-16')," >> $output_file
+echo "(3, 'Casa en Iztapalapa', 9000, 'Casa', 'Iztapalapa', 'Casa de 3 recamaras, 2 baños, con patio trasero y estacionamiento.', '2024-11-16')," >> $output_file
 echo "(5, 'Departamento en Centro Historico', 7000, 'Departamento', 'Centro Historico', 'Departamento amueblado de 2 recamaras, baño completo y cocina equipada.', '2024-11-15')," >> $output_file
-echo "(2, 'Casa en Condesa', 14000, 'Casa', 'Condesa', 'Casa moderna de 4 recamaras, jardin y seguridad privada.', '2024-11-14')," >> $output_file
-echo "(5, 'Recamara en Roma Norte', 4000, 'Recamara', 'Roma Norte', 'Recamara acogedora cerca de transporte publico y restaurantes.', '2024-11-12');" >> $output_file
+echo "(3, 'Casa en Condesa', 14000, 'Casa', 'Condesa', 'Casa moderna de 4 recamaras, jardin y seguridad privada.', '2024-11-14')," >> $output_file
+echo "(1, 'Recamara en Roma Norte', 4000, 'Recamara', 'Roma Norte', 'Recamara acogedora cerca de transporte publico y restaurantes.', '2024-11-12');" >> $output_file
 
 # Insertar datos en la tabla Imagenes
 echo -e "\n-- Insertar datos en la tabla Imagenes" >> $output_file
@@ -73,5 +73,5 @@ echo "(3, 4, 'El departamento es funcional, aunque un poco caro para la zona.', 
 echo "(4, 3, 'La casa en Condesa es moderna y bien ubicada. Me encanto el jardin.', 5, '2024-11-14 11:20:00')," >> $output_file
 echo "(5, 4, 'La recamara es acogedora, pero un poco pequena para mi gusto.', 2, '2024-11-12 09:50:00');" >> $output_file
 
-echo "Script SQL generado en $output_file"
+echo "Script SQL corregido generado en $output_file"
 

@@ -12,7 +12,12 @@ import jwt from 'jsonwebtoken';
 interface Property {
   id: number;
   title: string;
-  images: string[]; // Ahora es un arreglo de imágenes
+  location: string;
+  rent: number;
+  type: string;
+  info: string;
+  date: string;
+  images: string[];
 }
 
 interface UserPayload {
@@ -111,11 +116,21 @@ const PaginaPrincipal: React.FC<PaginaPrincipalProps> = ({ userData }) => {
               </div>
             )}
             <h1 className={styles.title}>{titulo}</h1>
-            <div className={styles.propertyGrid}>
-              {departamentosRecientes.map(({ id, title, image }: Property) => (
-                <PropertyCard key={id} title={title} image={image} />
-              ))}
-            </div>
+
+<div className={styles.propertyGrid}>
+  {departamentosRecientes.map(({ id, title, images }: Property) => (
+    <PropertyCard
+      key={id}
+      title={title}
+      image={getRandomImage(images)}
+      redirectUri={`/post-details/${id}`} // URI dinámico
+    />
+  ))}
+</div>
+
+
+
+
           </>
         )}
       </main>

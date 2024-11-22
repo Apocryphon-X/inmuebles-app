@@ -1,11 +1,11 @@
 -- Archivo SQL con contraseñas hashed utilizando bcrypt y opiniones en los comentarios
 -- Insertar datos en la tabla Usuarios
 INSERT INTO Usuarios (nombre, correo, telefono, contrasenia, tipo_usuario) VALUES
-('María López', 'maria.lopez@example.com', '5551234568', '$2b$10$2hDSpugmJuSI6dMVt3W.9e2JURgSIxAPt4r8pCQLPRU7pDmkCNpYO', 'ARRENDATARIO'),
-('Carlos García', 'carlos.garcia@example.com', '555123456789', '$2b$10$7YExsPZP90Wauv7UweG.JeSTDga85o7dYN1jQDhLbMUPMcL8EiMR2', 'ALUMNO'),
-('Pedro Martínez', 'pedro.martinez@example.com', '5555678901', '$2b$10$rhMJYGq9dkNM6GjL5LukAOcgKvKMR1o..qUPlZEkaH5PZmPHlPSre', 'ARRENDATARIO'),
-('Ana Sánchez', 'ana.sanchez@example.com', '5554567890', '$2b$10$bXbQMEr.UeRfG5KchLxU4uWL/w0rz.JW1uC.AuFnc0jYzOInGE9V2', 'ALUMNO'),
-('Juan Pérez', 'juan.perez@example.com', '5551234567', '$2b$10$Fg2V/AnwaYnJzu8GK3a7XuPzGYTToQu7wX/o3O3XZlCYZ9SckaFVa', 'ARRENDATARIO');
+('María López', 'maria.lopez@example.com', '5551234568', '$2b$10$gF/6hERoq2y36I27uSAfcO9tFC4bk.MPgXYti9ijvMCEM4KkLlodS', 'ARRENDATARIO'),
+('Carlos García', 'carlos.garcia@example.com', '5551234567', '$2b$10$Glc0GGcils3NlJwTqbnVreniAyCoctR5EShuiEGgvalB7WagtsSVe', 'ALUMNO'),
+('Pedro Martínez', 'pedro.martinez@example.com', '5555678901', '$2b$10$GaRipihPeyCtlP1/6ZLVi.rZvbdy.CSq.JGJsp.OLKoWNq9O.3lye', 'ARRENDATARIO'),
+('Ana Sánchez', 'ana.sanchez@example.com', '5554567890', '$2b$10$W2PIPk3WqW4cH/cw5PR9tu59XhOAVNO/RYNNGilMLDpN23EzUddNG', 'ALUMNO'),
+('Juan Pérez', 'juan.perez@example.com', '5551234567', '$2b$10$2zGm1K5Ees9LOUJscPlZAu4bLdvLbP.IQjUbvDZSdO.7I1UdVEh1u', 'ARRENDATARIO');
 
 -- Insertar datos en la tabla Perfiles
 INSERT INTO Perfiles (id_usuario) VALUES
@@ -14,10 +14,10 @@ INSERT INTO Perfiles (id_usuario) VALUES
 -- Insertar datos en la tabla Publicaciones
 INSERT INTO Publicaciones (id_arrendatario, nombre_inmueble, renta_mensual, tipo_inmueble, ubicacion, informacion_inmueble, fecha_publicacion) VALUES
 (1, 'Recamara en Coyoacan', 3000, 'Recamara', 'Coyoacan', 'Recamara amplia y bien iluminada, ideal para estudiantes. Incluye cama y armario.', '2024-11-17'),
-(2, 'Casa en Iztapalapa', 9000, 'Casa', 'Iztapalapa', 'Casa de 3 recamaras, 2 baños, con patio trasero y estacionamiento.', '2024-11-16'),
+(3, 'Casa en Iztapalapa', 9000, 'Casa', 'Iztapalapa', 'Casa de 3 recamaras, 2 baños, con patio trasero y estacionamiento.', '2024-11-16'),
 (5, 'Departamento en Centro Historico', 7000, 'Departamento', 'Centro Historico', 'Departamento amueblado de 2 recamaras, baño completo y cocina equipada.', '2024-11-15'),
-(2, 'Casa en Condesa', 14000, 'Casa', 'Condesa', 'Casa moderna de 4 recamaras, jardin y seguridad privada.', '2024-11-14'),
-(5, 'Recamara en Roma Norte', 4000, 'Recamara', 'Roma Norte', 'Recamara acogedora cerca de transporte publico y restaurantes.', '2024-11-12');
+(3, 'Casa en Condesa', 14000, 'Casa', 'Condesa', 'Casa moderna de 4 recamaras, jardin y seguridad privada.', '2024-11-14'),
+(1, 'Recamara en Roma Norte', 4000, 'Recamara', 'Roma Norte', 'Recamara acogedora cerca de transporte publico y restaurantes.', '2024-11-12');
 
 -- Insertar datos en la tabla Imagenes
 INSERT INTO Imagenes (id_publicacion, url) VALUES

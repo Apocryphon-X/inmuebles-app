@@ -9,6 +9,7 @@ type Property = {
   type: string;
   info: string;
   date: string;
+  id_arrendatario: number;
   images: string[];
 };
 
@@ -20,6 +21,7 @@ type Row = {
   type: string;
   info: string;
   date: string;
+  id_arrendatario: number;
   image: string | null;
 };
 
@@ -51,6 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             p.tipo_inmueble AS type,
             p.informacion_inmueble AS info,
             p.fecha_publicacion AS date,
+            p.id_arrendatario AS id_arrendatario,
             i.url AS image
           FROM Publicaciones p
           LEFT JOIN Imagenes i ON p.id_publicacion = i.id_publicacion
@@ -75,6 +78,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 type: typedRows[0].type,
                 info: typedRows[0].info,
                 date: typedRows[0].date,
+                id_arrendatario: typedRows[0].id_arrendatario,
                 images: typedRows
                   .map((row) => row.image)
                   .filter((img): img is string => img !== null),

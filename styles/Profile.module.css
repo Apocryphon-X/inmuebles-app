@@ -54,7 +54,6 @@
   background-color: #007bff;
   color: white;
   font-size: 1rem;
-  font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -73,5 +72,19 @@
 .createPostButton:focus {
   outline: none; /* Remueve el contorno estándar */
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Añade un contorno azul */
+}
+.logoutButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logoutButton:hover {
+  background-color: #e63939;
 }
 

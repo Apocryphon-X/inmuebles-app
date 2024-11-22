@@ -4,32 +4,52 @@
   min-height: 100vh;
 }
 
-.main {
-  flex: 1;
+.mainContainer.activeBackground {
+  background-color: #f4f4f6;
+}
+
+.mainContent {
+  flex-grow: 1;
+}
+
+.innerContent {
   padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .propertyDetails {
   margin-bottom: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .propertyName {
-  font-size: 2rem;
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
 }
 
 .imageContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
 .propertyImage {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.propertyImage:hover {
+  transform: scale(1.05);
 }
 
 .propertyInfo,
@@ -38,25 +58,32 @@
 .propertyType {
   margin-bottom: 10px;
   font-size: 1rem;
+  color: #555;
 }
 
 .contactButton {
-  padding: 10px 20px;
-  background-color: #0070f3;
+  padding: 12px 25px;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.2s;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .contactButton:hover {
-  background-color: #005bb5;
+  background-color: #0056b3;
+  transform: translateY(-3px);
 }
 
 .commentsSection {
   margin-top: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .comments {
@@ -71,34 +98,47 @@
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fdfdfd;
 }
 
-.comment h3 {
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el nombre y las estrellas */
+  margin-bottom: 5px; /* Espacio entre el encabezado y el comentario */
+}
+
+.commentHeader h3 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: bold;
+  color: #007bff;
 }
 
 .rating {
-  color: #ffc107; /* Dorado para estrellas */
-  font-size: 1rem;
-  margin: 5px 0;
+  font-size: 1.2rem; /* Tamaño de las estrellas */
+  color: #ffc107; /* Dorado */
+  display: flex; /* Asegura que las estrellas no se rompan */
 }
 
 .commentText {
   font-size: 1rem;
-  margin: 10px 0;
+  margin-top: 5px;
+  color: #444;
 }
 
-.commentTime {
+.commentDate {
   font-size: 0.85rem;
-  color: #666;
+  color: #6c757d; /* Gris suave */
+  margin-top: 8px; /* Espacio entre el comentario y la fecha */
+  display: block; /* Asegura que la fecha esté en una nueva línea */
+  text-align: left; /* Alinea la fecha a la izquierda */
 }
 
 .commentForm {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .textArea {
@@ -106,9 +146,11 @@
   height: 100px;
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 8px;
   resize: none;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .ratingInput {
@@ -120,27 +162,37 @@
 .ratingInput label {
   font-size: 1rem;
   font-weight: bold;
+  color: #555;
 }
 
 .ratingInput select {
-  padding: 5px;
+  padding: 8px;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.ratingInput select:hover,
+.ratingInput select:focus {
+  border-color: #007bff;
 }
 
 .submitButton {
-  padding: 10px 20px;
-  background-color: #0070f3;
+  padding: 12px 25px;
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.2s;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .submitButton:hover {
-  background-color: #005bb5;
+  background-color: #218838;
+  transform: translateY(-3px);
 }
 

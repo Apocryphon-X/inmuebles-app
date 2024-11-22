@@ -28,6 +28,22 @@ const Profile: React.FC<ProfileProps> = ({ userData }) => {
     router.push('/create-post'); // Redirige a la página para crear publicaciones
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        router.push('/'); // Redirige a la página de inicio
+      } else {
+        console.error('Error al cerrar sesión');
+      }
+    } catch (error) {
+      console.error('Error de red al intentar cerrar sesión:', error);
+    }
+  };
+
   // Extraer el apellido paterno del nombre completo
   const apellidoPaterno = userData?.nombre?.split(' ')[1] || 'No disponible';
 
@@ -71,6 +87,9 @@ const Profile: React.FC<ProfileProps> = ({ userData }) => {
             Crear publicación
           </button>
         )}
+        <button className={styles.logoutButton} onClick={handleLogout}>
+          Cerrar sesión
+        </button>
       </main>
       <Footer />
     </div>
