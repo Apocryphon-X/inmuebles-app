@@ -43,7 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       );
 
       if (comments.length === 0) {
-        res.status(200).json({ error: 'No se encontraron comentarios para esta publicación' });
+        res.status(200).json([]);
       } else {
         res.status(200).json(comments);
       }
