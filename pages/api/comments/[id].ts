@@ -40,13 +40,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         WHERE c.id_publicacion = ?
       `,
         [id]
-      );
-
-      if (comments.length === 0) {
-        res.status(200).json([]);
-      } else {
+      )
+      ;
         res.status(200).json(comments);
-      }
     } else if (method === 'POST') {
       // Crear un nuevo comentario
       const { comment, rating } = body;
