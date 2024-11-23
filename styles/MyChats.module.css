@@ -1,0 +1,90 @@
+/* Estructura principal */
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* Encabezado y contenido */
+.content {
+  display: flex;
+  flex-direction: column; /* Mantén los elementos en columna */
+  justify-content: center; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  flex-grow: 1;
+  width: 80%; /* Ancho fijo como porcentaje de la página */
+  max-width: 700px; /* Límite para pantallas pequeñas */
+  padding: 2rem; /* Espaciado proporcional */
+  margin: auto; /* Centrado horizontal y vertical en su contenedor */
+  box-sizing: border-box; /* Asegura que padding no desborde */
+}
+
+/* Título de la página */
+.title {
+  text-align: center;
+  font-size: 1.8rem; /* Tamaño relativo */
+  color: #333;
+  margin-bottom: 1.5rem; /* Espaciado proporcional */
+}
+
+/* Mensajes de estado */
+.loading {
+  text-align: center;
+  font-size: 1.2rem; /* Tamaño relativo */
+  color: #007bff;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 1rem; /* Tamaño relativo */
+  margin-top: 1rem; /* Espaciado proporcional */
+}
+
+.noChats {
+  text-align: center;
+  color: #555;
+  font-size: 1rem; /* Tamaño relativo */
+  margin-top: 1rem; /* Espaciado proporcional */
+}
+
+/* Lista de chats */
+.chatList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espaciado proporcional */
+  width: 100%; /* Haz que ocupe todo el ancho disponible */
+}
+
+/* Tarjetas de chat */
+.chatCard {
+  display: block;
+  background-color: #ffffff;
+  padding: 1rem; /* Espaciado proporcional */
+  border-radius: 0.5rem; /* Bordes redondeados relativos */
+  box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.chatCard:hover {
+  transform: translateY(-0.2rem);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo del título dentro de cada tarjeta */
+.chatTitle {
+  font-size: 1.2rem; /* Tamaño relativo */
+  color: #007bff;
+  margin-bottom: 0.5rem; /* Espaciado proporcional */
+}
+
+/* Detalles dentro de cada tarjeta */
+.chatDetail {
+  font-size: 0.9rem; /* Tamaño relativo */
+  color: #666;
+}
+

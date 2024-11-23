@@ -1,5 +1,4 @@
-/* styles/Profile.module.css */
-
+/* Contenedor principal */
 .mainContainer {
   min-height: 100vh;
   display: flex;
@@ -7,6 +6,7 @@
   background-color: #f9f9f9;
 }
 
+/* Contenido del perfil */
 .profileContent {
   flex: 1;
   display: flex;
@@ -15,6 +15,7 @@
   padding: 2rem;
 }
 
+/* Título del perfil */
 .title {
   font-size: 2rem;
   font-weight: 600;
@@ -22,15 +23,17 @@
   margin-bottom: 2rem;
 }
 
+/* Tarjeta del perfil */
 .profileCard {
   width: 100%;
   max-width: 400px;
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Elementos individuales del perfil */
 .profileItem {
   display: flex;
   justify-content: space-between;
@@ -42,49 +45,77 @@
   border-bottom: none; /* Remueve el borde del último */
 }
 
+/* Etiqueta de los elementos */
 .label {
   font-weight: 600;
   color: #333;
 }
 
-/* Estilo para el botón de "Crear publicación" */
-.createPostButton {
+/* Contenedor para los botones */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaciado uniforme entre los botones */
   margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
+  width: 100%;
+  align-items: center;
+  max-width: 400px;
+}
+
+/* Botón base */
+.button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px; /* Bordes ligeramente redondeados */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  width: 60%; /* Asegura que ocupen todo el ancho del contenedor */
+  text-align: center;
+}
+
+/* Botón para crear publicaciones */
+.createPostButton {
   background-color: #007bff;
   color: white;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .createPostButton:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+  background-color: #0056b3;
 }
 
 .createPostButton:active {
-  background-color: #003f8c; /* Azul aún más oscuro al hacer clic */
+  background-color: #003f8c;
 }
 
-.createPostButton:focus {
-  outline: none; /* Remueve el contorno estándar */
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Añade un contorno azul */
+/* Botón para mis chats */
+.chatsButton {
+  background-color: #28a745;
+  color: white;
 }
+
+.chatsButton:hover {
+  background-color: #218838;
+}
+
+.chatsButton:active {
+  background-color: #1e7e34;
+}
+
+/* Botón para cerrar sesión */
 .logoutButton {
-  margin-top: 20px;
-  padding: 10px 20px;
   background-color: #ff4d4d;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
 }
 
 .logoutButton:hover {
   background-color: #e63939;
+}
+
+.logoutButton:active {
+  background-color: #cc0000;
 }
 

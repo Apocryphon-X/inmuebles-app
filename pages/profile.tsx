@@ -28,6 +28,10 @@ const Profile: React.FC<ProfileProps> = ({ userData }) => {
     router.push('/create-post'); // Redirige a la página para crear publicaciones
   };
 
+  const handleMyChatsClick = () => {
+    router.push('/my-chats'); // Redirige a la página de mis chats
+  };
+
   const handleLogout = async () => {
     try {
       const response = await fetch('/api/logout', {
@@ -55,42 +59,57 @@ const Profile: React.FC<ProfileProps> = ({ userData }) => {
         onLogoClick={handleLogoClick}
         usuarioNombre={userData?.nombre || null}
       />
-      <main className={styles.profileContent}>
-        <h1 className={styles.title}>Perfil</h1>
-        <div className={styles.profileCard}>
-          <div className={styles.profileItem}>
-            <span className={styles.label}>Apellido Paterno:</span>
-            <span>{apellidoPaterno}</span>
-          </div>
-          <div className={styles.profileItem}>
-            <span className={styles.label}>Nombre(s):</span>
-            <span>{userData?.nombre?.split(' ')[0] || 'No disponible'}</span>
-          </div>
-          <div className={styles.profileItem}>
-            <span className={styles.label}>Correo Electrónico:</span>
-            <span>{userData?.correo || 'No disponible'}</span>
-          </div>
-          <div className={styles.profileItem}>
-            <span className={styles.label}>Teléfono:</span>
-            <span>{userData?.telefono || 'No disponible'}</span>
-          </div>
-          <div className={styles.profileItem}>
-            <span className={styles.label}>Tipo de Usuario:</span>
-            <span>{userData?.tipo_usuario || 'No disponible'}</span>
-          </div>
-        </div>
-        {userData?.tipo_usuario === 'ARRENDATARIO' && (
-          <button
-            className={styles.createPostButton}
-            onClick={handleCreatePostClick}
-          >
-            Crear publicación
-          </button>
-        )}
-        <button className={styles.logoutButton} onClick={handleLogout}>
-          Cerrar sesión
-        </button>
-      </main>
+<main className={styles.profileContent}>
+  <h1 className={styles.title}>Perfil</h1>
+  <div className={styles.profileCard}>
+    <div className={styles.profileItem}>
+      <span className={styles.label}>Apellido Paterno:</span>
+      <span>{apellidoPaterno}</span>
+    </div>
+    <div className={styles.profileItem}>
+      <span className={styles.label}>Nombre(s):</span>
+      <span>{userData?.nombre?.split(' ')[0] || 'No disponible'}</span>
+    </div>
+    <div className={styles.profileItem}>
+      <span className={styles.label}>Correo Electrónico:</span>
+      <span>{userData?.correo || 'No disponible'}</span>
+    </div>
+    <div className={styles.profileItem}>
+      <span className={styles.label}>Teléfono:</span>
+      <span>{userData?.telefono || 'No disponible'}</span>
+    </div>
+    <div className={styles.profileItem}>
+      <span className={styles.label}>Tipo de Usuario:</span>
+      <span>{userData?.tipo_usuario || 'No disponible'}</span>
+    </div>
+  </div>
+
+  {/* Grupo de botones */}
+  <div className={styles.buttonGroup}>
+    {userData?.tipo_usuario === 'ARRENDATARIO' && (
+      <button
+        className={`${styles.button} ${styles.createPostButton}`}
+        onClick={handleCreatePostClick}
+      >
+        Crear publicación
+      </button>
+    )}
+    <button
+      className={`${styles.button} ${styles.chatsButton}`}
+      onClick={handleMyChatsClick}
+    >
+      Mis chats
+    </button>
+    <button
+      className={`${styles.button} ${styles.logoutButton}`}
+      onClick={handleLogout}
+    >
+      Cerrar sesión
+    </button>
+  </div>
+</main>
+
+
       <Footer />
     </div>
   );
@@ -128,4 +147,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default Profile;
+
 

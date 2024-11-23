@@ -6,21 +6,20 @@ import { parse } from 'cookie';
 
 const getDbConnection = async () => {
   return open({
-    filename: 'data/main_data.db', // Cambia el nombre de la base de datos si es necesario
+    filename: 'data/main_data.db',
     driver: sqlite3.Database,
   });
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, query, body } = req;
-  const publicationId = query.publicationId as string; // Extrae publicationId del router dinámico
+  const publicationId = query.publicationId as string;
 
   if (!publicationId) {
     res.status(400).json({ error: 'ID de publicación inválida' });
     return;
   }
 
-  // Leer el token de la cookie
   const cookies = parse(req.headers.cookie || '');
   const token = cookies.authToken;
 
@@ -30,10 +29,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   let userId;
+  let userName;
   try {
     const JWT_SECRET = process.env.JWT_SECRET as string;
-    const decoded = jwt.verify(token, JWT_SECRET) as { id_usuario: number };
+    const decoded = jwt.verify(token, JWT_SECRET) as { id_usuario: number; nombre: string };
     userId = decoded.id_usuario;
+    userName = decoded.nombre; // El nombre del usuario autenticado
   } catch (error) {
     res.status(401).json({ error: 'Token inválido' });
     return;
@@ -57,32 +58,43 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return;
     }
 
-    const idUsuarioRecibe = publication.id_arrendatario;
+    const otherParticipant = publication.id_arrendatario;
 
     if (method === 'GET') {
-      // Buscar el chat asociado a la publicación y validar al usuario
       let chat = await db.get(
         `
-        SELECT id_chat
+        SELECT id_chat, participant_a, participant_b
         FROM Chats
         WHERE id_publicacion = ?
-          AND (id_usuario_inicia = ? OR id_usuario_recibe = ?)
+          AND (participant_a = ? OR participant_b = ?)
         `,
         [publicationId, userId, userId]
       );
 
-      // Si no existe el chat, crearlo
       if (!chat) {
         const currentDateTime = new Date().toISOString();
         const result = await db.run(
           `
-          INSERT INTO Chats (id_publicacion, id_usuario_inicia, id_usuario_recibe, fecha_inicio)
+          INSERT INTO Chats (id_publicacion, participant_a, participant_b, fecha_inicio)
           VALUES (?, ?, ?, ?)
           `,
-          [publicationId, userId, idUsuarioRecibe, currentDateTime]
+          [publicationId, userId, otherParticipant, currentDateTime]
         );
-        chat = { id_chat: result.lastID };
+        chat = { id_chat: result.lastID, participant_a: userId, participant_b: otherParticipant };
       }
+
+      // Obtener nombres de ambos participantes
+      const participants = await db.all(
+        `
+        SELECT id_usuario, nombre
+        FROM Usuarios
+        WHERE id_usuario IN (?, ?)
+        `,
+        [chat.participant_a, chat.participant_b]
+      );
+
+      const participantAName = participants.find((p) => p.id_usuario === chat.participant_a)?.nombre || 'Desconocido';
+      const participantBName = participants.find((p) => p.id_usuario === chat.participant_b)?.nombre || 'Desconocido';
 
       // Obtener mensajes del chat
       const messages = await db.all(
@@ -100,17 +112,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         [chat.id_chat]
       );
 
-      if (messages.length === 0) {
-        res.status(200).json([]); // No hay mensajes, pero el chat existe
-      } else {
-        const formattedMessages = messages.map((msg) => ({
+      res.status(200).json({
+        participants: {
+          YOU: userName,
+          participant_a: participantAName,
+          participant_b: participantBName,
+        },
+        messages: messages.map((msg) => ({
           id: msg.id,
-          sender: msg.senderId === userId ? 'user' : 'owner', // Identificar remitente
+          sender: msg.senderId === userId ? 'user' : 'owner',
           content: msg.content,
           timestamp: msg.timestamp,
-        }));
-        res.status(200).json(formattedMessages);
-      }
+        })),
+      });
     } else if (method === 'POST') {
       const { content } = body;
 
@@ -119,31 +133,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
       }
 
-      // Verificar el chat asociado a la publicación
       let chat = await db.get(
         `
         SELECT id_chat
         FROM Chats
         WHERE id_publicacion = ?
-          AND (id_usuario_inicia = ? OR id_usuario_recibe = ?)
+          AND (participant_a = ? OR participant_b = ?)
         `,
         [publicationId, userId, userId]
       );
 
-      // Si no existe el chat, crearlo
       if (!chat) {
         const currentDateTime = new Date().toISOString();
         const result = await db.run(
           `
-          INSERT INTO Chats (id_publicacion, id_usuario_inicia, id_usuario_recibe, fecha_inicio)
+          INSERT INTO Chats (id_publicacion, participant_a, participant_b, fecha_inicio)
           VALUES (?, ?, ?, ?)
           `,
-          [publicationId, userId, idUsuarioRecibe, currentDateTime]
+          [publicationId, userId, otherParticipant, currentDateTime]
         );
         chat = { id_chat: result.lastID };
       }
 
-      // Insertar el mensaje en el chat
       const currentDateTime = new Date().toISOString();
 
       try {

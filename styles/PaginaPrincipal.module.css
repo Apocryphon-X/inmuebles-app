@@ -15,45 +15,122 @@
   margin-bottom: 1rem;
 }
 
+/* Botón principal de filtros (más cuadrado) */
 .filterButton {
   background-color: #3b82f6; /* azul 500 */
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: background-color 0.3s;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px; /* Bordes más cuadrados */
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease;
+  cursor: pointer;
 }
 
 .filterButton:hover {
   background-color: #1d4ed8; /* azul 700 */
 }
 
+.filterButton:active {
+  transform: scale(0.95);
+}
+
+/* Contenedor del menú de filtros */
 .filterMenu {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f3f4f6; /* gris claro */
+  border: 1px solid #d1d5db; /* gris */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.filterOption {
-  background-color: #d1d5db; /* gris 300 */
+/* Dropdowns (selectores) */
+.filterMenu select {
+  appearance: none; /* Elimina el estilo por defecto del navegador */
   padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9; /* fondo claro */
+  color: #333; /* texto oscuro */
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  outline: none;
 }
 
-.filterOption:hover {
-  background-color: #6b7280; /* gris 500 */
+.filterMenu select:focus {
+  border-color: #3b82f6; /* azul 500 */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* sombra azul */
+  background-color: #ffffff; /* fondo blanco al enfocar */
 }
 
+.filterMenu select:hover {
+  background-color: #ffffff; /* fondo blanco al pasar el mouse */
+}
+
+/* Opciones del dropdown */
+.filterMenu option {
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Botones de aplicar y deshacer filtros */
+.applyFilterButton,
+.resetFilterButton {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px; /* Bordes más cuadrados */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.applyFilterButton {
+  background-color: #3b82f6; /* azul 500 */
+}
+
+.applyFilterButton:hover {
+  background-color: #1d4ed8; /* azul 700 */
+}
+
+.applyFilterButton:active {
+  transform: scale(0.95);
+}
+
+.resetFilterButton {
+  background-color: #ef4444; /* rojo 500 */
+}
+
+.resetFilterButton:hover {
+  background-color: #dc2626; /* rojo 700 */
+}
+
+.resetFilterButton:active {
+  transform: scale(0.95);
+}
+
+/* Título */
 .title {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  color: #333;
 }
 
+/* Grid de propiedades */
 .propertyGrid {
   display: grid;
   gap: 1.5rem;
@@ -78,5 +155,25 @@
   .propertyGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.sortButton {
+  background-color: #10b981; /* verde 500 */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.sortButton:hover {
+  background-color: #059669; /* verde 700 */
+}
+
+.sortButton:active {
+  transform: scale(0.95);
 }
 

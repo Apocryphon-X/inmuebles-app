@@ -52,12 +52,12 @@ CREATE TABLE Comentarios (
 CREATE TABLE Chats (
     id_chat INTEGER PRIMARY KEY AUTOINCREMENT,
     id_publicacion INTEGER NOT NULL,
-    id_usuario_inicia INTEGER NOT NULL, -- Usuario que inicia el chat
-    id_usuario_recibe INTEGER NOT NULL, -- Usuario con quien se inicia el chat
+    participant_a INTEGER NOT NULL, -- Primer participante del chat
+    participant_b INTEGER NOT NULL, -- Segundo participante del chat
     fecha_inicio TEXT NOT NULL, -- Fecha de inicio del chat
     FOREIGN KEY (id_publicacion) REFERENCES Publicaciones(id_publicacion) ON DELETE CASCADE,
-    FOREIGN KEY (id_usuario_inicia) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE,
-    FOREIGN KEY (id_usuario_recibe) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE
+    FOREIGN KEY (participant_a) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (participant_b) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE
 );
 
 -- Tabla Mensajes: Contiene todos los mensajes asociados a los chats
