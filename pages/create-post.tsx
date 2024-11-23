@@ -81,7 +81,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ userData }) => {
 
       const result = await response.json();
       alert('Publicación creada exitosamente.');
-      router.push(`/detalle-publicacion/${result.idPublicacion}`);
+      router.push(`/post-details/${result.idPublicacion}`);
     } catch (error) {
       console.error('Error al enviar los datos:', error);
       alert('Error al enviar los datos. Intenta de nuevo más tarde.');
